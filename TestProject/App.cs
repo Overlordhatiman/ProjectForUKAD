@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TestProject
 {
@@ -43,10 +44,10 @@ namespace TestProject
             
             List<LinkInfo> sortArr = new List<LinkInfo>(allArr.Length);
 
-            for (int i = 0; i < allArr.Length; i++)
+            Parallel.For(0, allArr.Length, i =>
             {
                 sortArr.Add(new LinkInfo(allArr[i], app.Response(allArr[i])));
-            }
+            });
 
             sortArr.Sort((x, y) => x.Time.CompareTo(y.Time));
 
